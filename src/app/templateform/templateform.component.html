@@ -1,0 +1,52 @@
+<div class="container">
+
+    <form (ngSubmit)="onSubmit(myForm.value)" #myForm="ngForm">
+        <h2>TemplateDriven Form</h2>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required #fName="ngModel" ngModel>
+        <div>
+            <small *ngIf="fName.invalid && fName.touched">FirstName is the required Field</small>
+        </div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required ngModel #lName="ngModel">
+        <div>
+            <small *ngIf="lName.invalid && lName.touched">LastName is the required Field</small>
+        </div>
+
+        <label for="lastName">email:</label>
+        <input type="email" id="email" name="email" required ngModel email>
+
+        <div class="gender-container">
+            <label>Gender:</label>
+            <input type="radio" id="male" name="gender" value="male" checked ngModel required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" ngModel required>
+            <label for="female">Female</label>
+
+        </div>
+
+        <label for="age">Age:</label>
+        <select id="age" name="age" ngModel required>
+      <option value=" 18-25 ">18-25</option>
+      <option value="26-35 ">26-35</option>
+      <option value="36-50 ">36-50</option>
+      <option value="51+ ">51+</option>
+    </select>
+
+        <button type="submit" class="btn" id="btn" [disabled]="!myForm.valid">{{editMode?'update Data' :'submit'}}</button>
+    </form>
+    <div class="card" style="border-color:  black; padding: 20px; ">All Students<button style="margin-left:70%; width:30%" (click)="clearAllData()">Clear All</button>
+        <div *ngFor="let val of allStudent; index as i ">
+            <li>{{i+1}}</li>
+
+            <li>{{val.firstName}}</li>
+            <li>{{val.lastName}}</li>
+            <li>{{val.email}}</li>
+            <li>{{val.age}}</li>
+            <li>{{val.gender}}</li>
+            <br>
+            <button style="background-color: red; float: left;width:25%;margin-right:40px;" (click)="deleteItem(val.id)">Delete</button>
+            <button style="background-color: blue; float:inline-start;width:25%;" (click)="onEditClicked(val.id)">Edit</button><br><br>
+        </div> <button (click)="latestData()">Student Data</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Reverse Name</th>
+            <th>Marks</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Salary</th>
+
+        </tr>
+    </thead>
+    <tbody *ngFor="let student of employees">
+        <tr>
+            <td>{{student.name}}</td>
+            <td>{{student.name|Capitalizer}}</td>
+            <td>{{student.marks/totalMarks|percent:'2.0-1'}}</td>
+            <td>{{student.dob|date:'fullDate'|lowercase}}</td>
+            <td>{{student.gender|uppercase}}</td>
+            <td>{{student.salary|currency:'INR'}}</td>
+        </tr>
+
+        <!-- Add more rows for additional students -->
+    </tbody>
+</table>
+<div><input type="text " placeholder="type gender" style="width: 450px;padding:2px 20px; margin: 10px 0px;height:30px;" [(ngModel)]="filterText">
+    <b>Result:</b>{{filterText|filter}}</div>

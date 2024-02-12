@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Contact Form</h2>
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit(reactiveForm.value)">
+        <div class="form-group">
+            <!-- formGroupName="personalDetails" -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" formControlName="name">
+        </div>
+        <div><small *ngIf="reactiveForm.get('name').errors?.['required']">FirstName is the required field.</small>
+            <small *ngIf="reactiveForm.get('name').errors?.['noSpaceAllowed']">FirstName cannont contain a space.</small>
+        </div>
+        <!-- <div>
+            <span style="color:red;" *ngIf="!reactiveForm.get('name').valid">The name is not valid</span></div> -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        <!-- <div>
+            <span style="color:red;" *ngIf="!reactiveForm.get('personalDetails.email').valid">The email is not valid</span></div> -->
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" formControlName="message" rows="4"></textarea>
+        </div>
+        <div class="form-group">
+            <ng-container></ng-container>
+        </div>
+        <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
+    </form>
+</div>
